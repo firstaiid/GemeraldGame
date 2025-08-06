@@ -1,0 +1,132 @@
+[gd_scene load_steps=14 format=3 uid="uid://da026nom6seos"]
+
+[ext_resource type="Script" uid="uid://cbeql4elvi2o8" path="res://scripts/matthew_enemy.gd" id="1_ioluw"]
+[ext_resource type="Texture2D" uid="uid://l5l10q0hv27t" path="res://assets/images/matthew-sheet.png" id="2_ioluw"]
+[ext_resource type="PackedScene" uid="uid://n2ta6yffstuu" path="res://scenes/MovementComponent.tscn" id="3_n0ijd"]
+[ext_resource type="PackedScene" uid="uid://c6nr08uljoa65" path="res://scenes/GravityComponent.tscn" id="4_5yc8h"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7isee"]
+atlas = ExtResource("2_ioluw")
+region = Rect2(0, 0, 1615, 1534)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n0ijd"]
+atlas = ExtResource("2_ioluw")
+region = Rect2(1615, 0, 1615, 1534)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5yc8h"]
+atlas = ExtResource("2_ioluw")
+region = Rect2(0, 1534, 1615, 1534)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tg4po"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7isee")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n0ijd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7isee")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5yc8h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7isee")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 7.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6l2tj"]
+size = Vector2(282, 606)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g2eoe"]
+size = Vector2(20, 90)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8e8gc"]
+size = Vector2(16.6667, 93.3333)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g2eoe"]
+radius = 6.66667
+height = 273.333
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ioluw"]
+size = Vector2(306.667, 606.667)
+
+[node name="MatthewEnemy" type="CharacterBody2D" node_paths=PackedStringArray("gravity_component", "movement_component", "right_detector", "left_detector", "hurt_box", "animated_sprite")]
+scale = Vector2(0.3, 0.3)
+collision_layer = 2
+floor_max_angle = 1.309
+floor_snap_length = 3.0
+platform_on_leave = 2
+script = ExtResource("1_ioluw")
+gravity_component = NodePath("GravityComponent")
+movement_component = NodePath("MovementComponent")
+right_detector = NodePath("Right")
+left_detector = NodePath("Left")
+hurt_box = NodePath("HurtBox")
+animated_sprite = NodePath("AnimatedSprite2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_repeat = 1
+position = Vector2(73.3333, -13.3333)
+scale = Vector2(0.508692, 0.508692)
+sprite_frames = SubResource("SpriteFrames_tg4po")
+animation = &"walk"
+frame_progress = 0.7541
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-26, -37)
+shape = SubResource("RectangleShape2D_6l2tj")
+
+[node name="Right" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right"]
+position = Vector2(120, 288.333)
+shape = SubResource("RectangleShape2D_g2eoe")
+
+[node name="Left" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left"]
+position = Vector2(-171.667, 286.667)
+shape = SubResource("RectangleShape2D_8e8gc")
+
+[node name="HurtBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(-26.6669, -340)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_g2eoe")
+debug_color = Color(0.900339, 0, 0.173486, 0.42)
+
+[node name="DamageBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageBox"]
+position = Vector2(-26.6667, -26.6667)
+shape = SubResource("RectangleShape2D_ioluw")
+debug_color = Color(0.824966, 0.398341, 1.92523e-07, 0.42)
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+position = Vector2(-48.3333, -38.3333)
+scale = Vector2(17.1667, 30.8333)
+
+[node name="MovementComponent" parent="." instance=ExtResource("3_n0ijd")]
+
+[node name="GravityComponent" parent="." instance=ExtResource("4_5yc8h")]
+
+[connection signal="body_entered" from="Right" to="." method="_on_right_body_entered"]
+[connection signal="body_exited" from="Right" to="." method="_on_right_body_exited"]
+[connection signal="body_entered" from="Left" to="." method="_on_left_body_entered"]
+[connection signal="body_exited" from="Left" to="." method="_on_left_body_exited"]
+[connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]
+[connection signal="body_entered" from="DamageBox" to="." method="_on_damage_box_body_entered"]
+[connection signal="screen_entered" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]

@@ -1,0 +1,298 @@
+[gd_scene load_steps=9 format=3 uid="uid://ik1ensevhigy"]
+
+[ext_resource type="Script" uid="uid://dn2esb4fvgmt5" path="res://scripts/ui.gd" id="1_dj8aq"]
+[ext_resource type="FontFile" uid="uid://betms66ubewps" path="res://assets/fonts/comic-sans.ttf" id="2_ro3t7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ro3t7"]
+bg_color = Color(0.443137, 0.443137, 0.443137, 0.654902)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+shadow_size = 5
+shadow_offset = Vector2(5, 5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5en4g"]
+bg_color = Color(0.511866, 0, 0.0589185, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ua6yw"]
+bg_color = Color(0.241156, 0.241156, 0.241156, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_75u2n"]
+bg_color = Color(0.435192, 0.435192, 0.435192, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xpksx"]
+bg_color = Color(0.345098, 0.345098, 0.345098, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3wlde"]
+bg_color = Color(0.344076, 0.344076, 0.344076, 1)
+
+[node name="UI" type="Control" node_paths=PackedStringArray("y_coord", "vril_coins", "fps_label", "health_bar", "health_label", "health_value", "pause_menu", "reset_button", "quit_button", "settings_button", "console", "console_text")]
+process_mode = 3
+top_level = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dj8aq")
+y_coord = NodePath("Coordinates")
+vril_coins = NodePath("VrilCoins")
+fps_label = NodePath("FPS")
+health_bar = NodePath("HealthBar")
+health_label = NodePath("HealthLabel")
+health_value = NodePath("HealthValue")
+pause_menu = NodePath("PauseMenu")
+reset_button = NodePath("PauseMenu/ResetButton")
+quit_button = NodePath("PauseMenu/QuitButton")
+settings_button = NodePath("PauseMenu/SettingsButton")
+console = NodePath("Console")
+console_text = NodePath("Console/WindowBorder/WindowFill/ConsoleText")
+
+[node name="Coordinates" type="Label" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 48.0
+offset_right = 182.0
+offset_bottom = 117.0
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_ro3t7")
+theme_override_font_sizes/font_size = 30
+text = "Coordinates:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FPS" type="Label" parent="."]
+z_index = 10
+layout_mode = 0
+offset_left = 16.0
+offset_right = 72.0
+offset_bottom = 69.0
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_ro3t7")
+theme_override_font_sizes/font_size = 30
+text = "FPS:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VrilCoins" type="Label" parent="."]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 491.0
+offset_right = 301.0
+offset_bottom = 562.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.603922)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_ro3t7")
+theme_override_font_sizes/font_size = 40
+text = "Vril Coins: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HealthLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = -21.0
+offset_top = 567.0
+offset_right = 259.0
+offset_bottom = 638.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.603922)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_ro3t7")
+theme_override_font_sizes/font_size = 40
+text = "Health:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 628.0
+offset_right = 420.0
+offset_bottom = 677.0
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("2_ro3t7")
+theme_override_styles/background = SubResource("StyleBoxFlat_ro3t7")
+theme_override_styles/fill = SubResource("StyleBoxFlat_5en4g")
+value = 50.0
+show_percentage = false
+
+[node name="HealthValue" type="Label" parent="."]
+layout_mode = 0
+offset_left = 97.0
+offset_top = 615.0
+offset_right = 377.0
+offset_bottom = 686.0
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_ro3t7")
+theme_override_font_sizes/font_size = 40
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PauseMenu" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="PauseMenu"]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0, 0, 0, 0.729412)
+
+[node name="PausedText" type="Label" parent="PauseMenu"]
+layout_mode = 0
+offset_left = 475.0
+offset_top = 106.0
+offset_right = 792.0
+offset_bottom = 247.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.603922)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_ro3t7")
+theme_override_font_sizes/font_size = 100
+text = "Paused"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SettingsButton" type="Button" parent="PauseMenu"]
+z_index = 8
+layout_mode = 0
+offset_left = 531.0
+offset_top = 365.0
+offset_right = 739.0
+offset_bottom = 444.0
+theme_override_colors/font_hover_color = Color(0.462291, 0.462291, 0.462291, 1)
+theme_override_colors/icon_disabled_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_hover_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_hover_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_focus_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 0)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_ro3t7")
+theme_override_font_sizes/font_size = 50
+disabled = true
+text = "Settings"
+flat = true
+
+[node name="ResetButton" type="Button" parent="PauseMenu"]
+z_index = 8
+layout_mode = 0
+offset_left = 563.0
+offset_top = 433.0
+offset_right = 705.0
+offset_bottom = 512.0
+theme_override_colors/font_hover_color = Color(0.462291, 0.462291, 0.462291, 1)
+theme_override_colors/icon_disabled_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_hover_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_hover_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_focus_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 0)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_ro3t7")
+theme_override_font_sizes/font_size = 50
+text = "Reset"
+flat = true
+
+[node name="QuitButton" type="Button" parent="PauseMenu"]
+z_index = 8
+layout_mode = 0
+offset_left = 559.0
+offset_top = 501.0
+offset_right = 701.0
+offset_bottom = 580.0
+theme_override_colors/font_hover_color = Color(0.462291, 0.462291, 0.462291, 1)
+theme_override_colors/icon_disabled_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_hover_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_hover_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_focus_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 0)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_ro3t7")
+theme_override_font_sizes/font_size = 50
+text = "Quit"
+flat = true
+
+[node name="Console" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="WindowBorder" type="Panel" parent="Console"]
+layout_mode = 0
+offset_left = 787.0
+offset_top = 22.0
+offset_right = 1444.0
+offset_bottom = 557.0
+scale = Vector2(0.712615, 0.759679)
+theme_override_styles/panel = SubResource("StyleBoxFlat_ua6yw")
+
+[node name="WindowFill" type="Panel" parent="Console/WindowBorder"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 41.0
+offset_right = 648.0
+offset_bottom = 475.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_75u2n")
+
+[node name="WindowTitle" type="Label" parent="Console/WindowBorder/WindowFill"]
+layout_mode = 0
+offset_left = 221.0
+offset_top = -39.3163
+offset_right = 441.0
+offset_bottom = -4.31635
+theme_override_font_sizes/font_size = 25
+text = "developer console"
+
+[node name="ConsoleText" type="RichTextLabel" parent="Console/WindowBorder/WindowFill"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 14.0
+offset_right = 621.0
+offset_bottom = 420.0
+theme_override_font_sizes/bold_italics_font_size = 20
+theme_override_font_sizes/italics_font_size = 20
+theme_override_font_sizes/mono_font_size = 20
+theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/bold_font_size = 20
+scroll_following = true
+
+[node name="CommandBox" type="Panel" parent="Console/WindowBorder"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 487.0
+offset_right = 18.0
+offset_bottom = 524.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_xpksx")
+
+[node name="TextBox" type="TextEdit" parent="Console/WindowBorder/CommandBox"]
+layout_mode = 0
+offset_left = 10.0
+offset_right = 640.0
+offset_bottom = 37.0
+tooltip_text = "type commands here"
+theme_override_styles/normal = SubResource("StyleBoxFlat_3wlde")
+placeholder_text = "type"
+context_menu_enabled = false
+emoji_menu_enabled = false
+
+[connection signal="pressed" from="PauseMenu/ResetButton" to="." method="_on_reset_button_pressed"]
+[connection signal="pressed" from="PauseMenu/QuitButton" to="." method="_on_quit_button_pressed"]

@@ -1,0 +1,91 @@
+[gd_scene load_steps=10 format=3 uid="uid://ewqxk3ijqxiq"]
+
+[ext_resource type="Texture2D" uid="uid://0ctkoa4gue1e" path="res://assets/images/rage-enemy.png" id="1_6l2tj"]
+[ext_resource type="Script" uid="uid://mwxt0am1lruq" path="res://scripts/rage_enemy.gd" id="1_7jh1h"]
+[ext_resource type="PackedScene" uid="uid://n2ta6yffstuu" path="res://scenes/MovementComponent.tscn" id="2_x5ben"]
+[ext_resource type="PackedScene" uid="uid://c6nr08uljoa65" path="res://scenes/GravityComponent.tscn" id="4_g2eoe"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6l2tj"]
+size = Vector2(282, 520)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g2eoe"]
+size = Vector2(20, 90)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8e8gc"]
+size = Vector2(16.6667, 93.3333)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g2eoe"]
+radius = 6.66667
+height = 266.667
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_exrfu"]
+size = Vector2(306.667, 540)
+
+[node name="RageEnemy" type="CharacterBody2D" node_paths=PackedStringArray("gravity_component", "movement_component", "right_detector", "left_detector", "hurt_box", "damage_box", "sprite")]
+scale = Vector2(0.15, 0.15)
+collision_layer = 2
+floor_max_angle = 1.309
+floor_snap_length = 3.0
+platform_on_leave = 2
+script = ExtResource("1_7jh1h")
+speed = -1.0
+gravity_component = NodePath("GravityComponent")
+movement_component = NodePath("MovementComponent")
+right_detector = NodePath("Right")
+left_detector = NodePath("Left")
+hurt_box = NodePath("HurtBox")
+damage_box = NodePath("DamageBox")
+sprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-24, 0)
+texture = ExtResource("1_6l2tj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-26, 6)
+shape = SubResource("RectangleShape2D_6l2tj")
+
+[node name="Right" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right"]
+position = Vector2(120, 288.333)
+shape = SubResource("RectangleShape2D_g2eoe")
+
+[node name="Left" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left"]
+position = Vector2(-171.667, 286.667)
+shape = SubResource("RectangleShape2D_8e8gc")
+
+[node name="HurtBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(-26.6667, -253.333)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_g2eoe")
+one_way_collision = true
+debug_color = Color(0.900339, 0, 0.173486, 0.42)
+
+[node name="DamageBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageBox"]
+position = Vector2(-26.6667, 30)
+shape = SubResource("RectangleShape2D_exrfu")
+debug_color = Color(0.824966, 0.398341, 1.92523e-07, 0.42)
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+position = Vector2(-26.6667, 6.66667)
+scale = Vector2(24.6667, 26)
+
+[node name="MovementComponent" parent="." instance=ExtResource("2_x5ben")]
+
+[node name="GravityComponent" parent="." instance=ExtResource("4_g2eoe")]
+
+[connection signal="body_entered" from="Right" to="." method="_on_right_body_entered"]
+[connection signal="body_exited" from="Right" to="." method="_on_right_body_exited"]
+[connection signal="body_entered" from="Left" to="." method="_on_left_body_entered"]
+[connection signal="body_exited" from="Left" to="." method="_on_left_body_exited"]
+[connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]
+[connection signal="body_entered" from="DamageBox" to="." method="_on_damage_box_body_entered"]
+[connection signal="screen_entered" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]

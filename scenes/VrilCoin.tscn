@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://dsr588yk68fhg"]
+
+[ext_resource type="Texture2D" uid="uid://drrg678s5knyx" path="res://assets/images/vril.png" id="1_06668"]
+[ext_resource type="Shader" uid="uid://djmpkab3opq5n" path="res://assets/shaders/outline.gdshader" id="1_ggsc3"]
+[ext_resource type="Script" uid="uid://qllkxhaaa44p" path="res://scripts/vril_coin.gd" id="1_qd1ss"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qd1ss"]
+radius = 42.0119
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_06668"]
+shader = ExtResource("1_ggsc3")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/width = 10.0
+shader_parameter/pattern = 0
+shader_parameter/inside = false
+shader_parameter/add_margins = true
+shader_parameter/number_of_images = Vector2(1, 1)
+
+[node name="VrilCoin" type="Node2D" node_paths=PackedStringArray("sprite")]
+script = ExtResource("1_qd1ss")
+sprite = NodePath("Vril")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_qd1ss")
+
+[node name="Vril" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_06668")
+scale = Vector2(0.160793, 0.160793)
+texture = ExtResource("1_06668")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+position = Vector2(-9.53674e-07, 0)
+scale = Vector2(3.7, 3.7)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="screen_entered" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]

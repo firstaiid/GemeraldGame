@@ -1,0 +1,188 @@
+[gd_scene load_steps=25 format=3 uid="uid://b3uuy0pnaksws"]
+
+[ext_resource type="Script" uid="uid://bg17vacj8q7m7" path="res://scripts/player.gd" id="1_v6fml"]
+[ext_resource type="PackedScene" uid="uid://c6nr08uljoa65" path="res://scenes/GravityComponent.tscn" id="3_3li8b"]
+[ext_resource type="Texture2D" uid="uid://dftn67djosm3u" path="res://assets/images/gassy-player-sheet.png" id="3_6eyey"]
+[ext_resource type="Texture2D" uid="uid://cmov1fyn25onp" path="res://assets/images/player-sheet.png" id="3_70d11"]
+[ext_resource type="PackedScene" uid="uid://d3x5x3erfeo5s" path="res://scenes/InputComponent.tscn" id="4_mdl7e"]
+[ext_resource type="PackedScene" uid="uid://n2ta6yffstuu" path="res://scenes/MovementComponent.tscn" id="5_qu4a1"]
+[ext_resource type="PackedScene" uid="uid://cwth7cpk23ydu" path="res://scenes/AnimationComponent.tscn" id="6_70d11"]
+[ext_resource type="AudioStream" uid="uid://wqqdeq5ycctx" path="res://assets/sounds/gassy-powerup.mp3" id="6_d3wef"]
+[ext_resource type="AudioStream" uid="uid://bfmdlw2um2tqe" path="res://assets/sounds/squish.mp3" id="7_o4126"]
+[ext_resource type="AudioStream" uid="uid://yju8hni0vly0" path="res://assets/sounds/all-the-things-she-said-nightcore.mp3" id="8_bruh7"]
+[ext_resource type="PackedScene" uid="uid://bveqb6yw8rvg0" path="res://scenes/AdvancedJumpComponent.tscn" id="8_khinc"]
+[ext_resource type="AudioStream" uid="uid://ocpeiy1cd453" path="res://assets/sounds/vril-coin.mp3" id="9_bruh7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qu4a1"]
+atlas = ExtResource("3_70d11")
+region = Rect2(0, 0, 361, 729)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d3wef"]
+atlas = ExtResource("3_6eyey")
+region = Rect2(0, 0, 361, 729)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_70d11"]
+atlas = ExtResource("3_70d11")
+region = Rect2(724, 0, 361, 729)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o4126"]
+atlas = ExtResource("3_6eyey")
+region = Rect2(724, 0, 361, 729)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cw2d6"]
+atlas = ExtResource("3_70d11")
+region = Rect2(362, 0, 361, 729)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lkdrv"]
+atlas = ExtResource("3_6eyey")
+region = Rect2(362, 0, 361, 729)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_khinc"]
+atlas = ExtResource("3_70d11")
+region = Rect2(1086, 0, 361, 729)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bruh7"]
+atlas = ExtResource("3_70d11")
+region = Rect2(0, 729, 361, 729)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p7iby"]
+atlas = ExtResource("3_6eyey")
+region = Rect2(1086, 0, 361, 729)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0rnld"]
+atlas = ExtResource("3_6eyey")
+region = Rect2(0, 729, 361, 729)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6eyey"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qu4a1")
+}],
+"loop": true,
+"name": &"fall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d3wef")
+}],
+"loop": true,
+"name": &"fall_gassy",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_70d11")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o4126")
+}],
+"loop": true,
+"name": &"idle_gassy",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cw2d6")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lkdrv")
+}],
+"loop": true,
+"name": &"jump_gassy",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_khinc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bruh7")
+}],
+"loop": true,
+"name": &"run",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p7iby")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0rnld")
+}],
+"loop": true,
+"name": &"run_gassy",
+"speed": 7.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_khinc"]
+size = Vector2(29.1165, 218)
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("gravity_component", "input_component", "movement_component", "animation_component", "jump_component", "sprite", "music", "vril_coin", "gassy_sound", "squish_sound")]
+floor_max_angle = 1.309
+floor_snap_length = 3.0
+platform_on_leave = 2
+script = ExtResource("1_v6fml")
+gravity_component = NodePath("GravityComponent")
+input_component = NodePath("InputComponent")
+movement_component = NodePath("MovementComponent")
+animation_component = NodePath("AnimationComponent")
+jump_component = NodePath("AdvancedJumpComponent")
+sprite = NodePath("PlayerSprite")
+music = NodePath("Music")
+vril_coin = NodePath("VrilCoin")
+gassy_sound = NodePath("GassyPowerup")
+squish_sound = NodePath("Squish")
+
+[node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.299, 0.3)
+sprite_frames = SubResource("SpriteFrames_6eyey")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 7.62939e-06)
+scale = Vector2(0.996, 1)
+shape = SubResource("RectangleShape2D_khinc")
+
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
+stream = ExtResource("8_bruh7")
+
+[node name="VrilCoin" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_bruh7")
+volume_db = 18.0
+
+[node name="GassyPowerup" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_d3wef")
+volume_db = 5.0
+
+[node name="Squish" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_o4126")
+
+[node name="GravityComponent" parent="." instance=ExtResource("3_3li8b")]
+gravity = 3000.0
+
+[node name="InputComponent" parent="." instance=ExtResource("4_mdl7e")]
+
+[node name="MovementComponent" parent="." instance=ExtResource("5_qu4a1")]
+speed = 500.0
+ground_accel_speed = 100.0
+ground_decel_speed = 60.0
+air_accel_speed = 20.0
+
+[node name="AnimationComponent" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("6_70d11")]
+sprite = NodePath("../PlayerSprite")
+
+[node name="AdvancedJumpComponent" parent="." instance=ExtResource("8_khinc")]
+jump_velocity = -1200.0
