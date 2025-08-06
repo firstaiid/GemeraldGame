@@ -45,5 +45,4 @@ func _on_visible_on_screen_enabler_2d_screen_exited() -> void:
 
 func _on_damage_box_body_entered(body: Node2D) -> void:
 	if body is Player:
-		print("hit")
 		GameController.player_hurt(20.0)

@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://d4a64ri2yitn5"]
+[gd_scene load_steps=5 format=3 uid="uid://d4a64ri2yitn5"]
 
 [ext_resource type="Script" uid="uid://taond7ivqnxk" path="res://scripts/main_menu.gd" id="1_0ykhv"]
 [ext_resource type="FontFile" uid="uid://betms66ubewps" path="res://assets/fonts/comic-sans.ttf" id="1_yqorp"]
+[ext_resource type="Texture2D" uid="uid://56q20g4oqbar" path="res://assets/images/cobson-head.png" id="3_2wh52"]
+[ext_resource type="Texture2D" uid="uid://676p7fb255ny" path="res://assets/images/rage-head.png" id="4_ow34m"]
 
 [node name="MainMenu" type="Control" node_paths=PackedStringArray("play_button", "achievements_button", "settings_button")]
 layout_mode = 3
@@ -93,5 +95,21 @@ theme_override_font_sizes/font_size = 50
 disabled = true
 text = "Settings"
 flat = true
+
+[node name="CobsonHead" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 146.0
+offset_right = 404.0
+offset_bottom = 646.0
+texture = ExtResource("3_2wh52")
+
+[node name="RageHead" type="TextureRect" parent="."]
+offset_left = 848.0
+offset_top = 211.0
+offset_right = 1294.0
+offset_bottom = 657.0
+texture = ExtResource("4_ow34m")
+expand_mode = 1
 
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
