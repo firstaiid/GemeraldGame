@@ -176,10 +176,11 @@ gravity = 3000.0
 [node name="InputComponent" parent="." instance=ExtResource("4_mdl7e")]
 
 [node name="MovementComponent" parent="." instance=ExtResource("5_qu4a1")]
-speed = 500.0
+speed = 450.0
 ground_accel_speed = 100.0
-ground_decel_speed = 60.0
-air_accel_speed = 20.0
+ground_decel_speed = 80.0
+air_accel_speed = 15.0
+air_decel_speed = 5.0
 
 [node name="AnimationComponent" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("6_70d11")]
 sprite = NodePath("../PlayerSprite")
