@@ -1,8 +1,5 @@
 extends Node
 
-func player_pos(value: Vector2):
-	EventHandler.emit_signal("player_pos", value)
-
 func vril_coin_collected():
 	EventHandler.emit_signal("vril_coin_collected")
 
@@ -26,3 +23,6 @@ func developer_console():
 
 func print_to_console(value: String):
 	EventHandler.emit_signal("print_to_console", value)
+	
+func start_game():
+	EventHandler.emit_signal("start_game")

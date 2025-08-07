@@ -33,8 +33,6 @@ func _physics_process(delta: float) -> void:
 	jump_component.handle_jump(self, input_component.get_jump_input(), input_component.get_jump_input_released())
 	animation_component.handle_jump_animation(jump_component.is_going_up, gravity_component.is_falling, gassy)
 	
-	GameController.player_pos(self.global_position)
-	
 	if self.global_position.y > 3000.0 or health <= 0:
 		get_tree().reload_current_scene()
 	

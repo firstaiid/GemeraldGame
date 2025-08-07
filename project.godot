@@ -10,7 +10,9 @@ config_version=5
 
 [application]
 
-config/name="gemeraldGame"
+config/name="Gemerald Game"
+config/description="Gemerald Game by first aid"
+config/version="0.1"
 run/main_scene="uid://i22wheiu2q5t"
 config/features=PackedStringArray("4.4", "Forward Plus")
 boot_splash/bg_color=Color(1, 1, 1, 1)
@@ -30,7 +32,6 @@ ProjectileEngine="*res://addons/godot_projectile_engine/GodotProjectileEngine.gd
 window/size/viewport_width=1280
 window/size/viewport_height=720
 window/size/mode=4
-window/size/resizable=false
 window/stretch/mode="canvas_items"
 
 [editor_plugins]

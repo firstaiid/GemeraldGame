@@ -1,7 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://d4a64ri2yitn5"]
+[gd_scene load_steps=12 format=3 uid="uid://d4a64ri2yitn5"]
 
 [ext_resource type="Script" uid="uid://taond7ivqnxk" path="res://scripts/main_menu.gd" id="1_0ykhv"]
 [ext_resource type="FontFile" uid="uid://betms66ubewps" path="res://assets/fonts/comic-sans.ttf" id="1_yqorp"]
+[ext_resource type="AudioStream" uid="uid://u0uiwpx71w66" path="res://assets/sounds/everytime-we-touch-nightcore.mp3" id="2_826wr"]
+[ext_resource type="PackedScene" uid="uid://ik1ensevhigy" path="res://scenes/UI.tscn" id="2_ucygd"]
 [ext_resource type="Texture2D" uid="uid://56q20g4oqbar" path="res://assets/images/cobson-head.png" id="3_2wh52"]
 [ext_resource type="Texture2D" uid="uid://676p7fb255ny" path="res://assets/images/rage-head.png" id="4_ow34m"]
 [ext_resource type="VideoStream" uid="uid://6wty1pohep6j" path="res://assets/videos/incredible-gassy-theme.mp4" id="5_l72w3"]
@@ -38,21 +40,41 @@ border_width_right = 5
 border_width_bottom = 5
 border_color = Color(0.277528, 0.277528, 0.277528, 1)
 
-[node name="MainMenu" type="Control" node_paths=PackedStringArray("play_button", "achievements_button", "settings_button", "intro", "intro_video", "skip_button", "quit_button")]
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("play_button", "achievements_button", "settings_button", "intro", "intro_video", "skip_button", "quit_button", "menu_buttons", "settings_buttons", "music", "video_settings_buttons", "full_screen_button", "vsync_button", "ui")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -1226.0
+offset_bottom = -673.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_0ykhv")
-play_button = NodePath("PlayButton")
-achievements_button = NodePath("AchievementsButton")
-settings_button = NodePath("SettingsButton")
+play_button = NodePath("MenuButtons/PlayButton")
+achievements_button = NodePath("MenuButtons/AchievementsButton")
+settings_button = NodePath("MenuButtons/SettingsButton")
 intro = NodePath("Intro")
 intro_video = NodePath("Intro/IntroVideo")
 skip_button = NodePath("Intro/SkipButton")
-quit_button = NodePath("QuitButton")
+quit_button = NodePath("MenuButtons/QuitButton")
+menu_buttons = NodePath("MenuButtons")
+settings_buttons = NodePath("SettingsButtons")
+music = NodePath("Music")
+video_settings_buttons = NodePath("VideoSettingsButton")
+full_screen_button = NodePath("VideoSettingsButton/FullscreenButton")
+vsync_button = NodePath("VideoSettingsButton/VsyncButton")
+ui = NodePath("UI")
+
+[node name="UI" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="UI" parent="UI" instance=ExtResource("2_ucygd")]
+offset_right = -1218.0
+offset_bottom = -665.0
+
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_826wr")
+autoplay = true
 
 [node name="TitleText" type="Label" parent="."]
 layout_mode = 0
@@ -71,95 +93,6 @@ text = "Gemerald
 Game"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="PlayButton" type="Button" parent="."]
-z_index = 8
-layout_mode = 0
-offset_left = 531.0
-offset_top = 389.0
-offset_right = 739.0
-offset_bottom = 468.0
-focus_mode = 0
-theme_override_colors/font_hover_color = Color(0.462291, 0.462291, 0.462291, 1)
-theme_override_colors/icon_disabled_color = Color(0, 0, 0, 0)
-theme_override_colors/icon_hover_pressed_color = Color(0, 0, 0, 0)
-theme_override_colors/icon_hover_color = Color(0, 0, 0, 0)
-theme_override_colors/icon_pressed_color = Color(0, 0, 0, 0)
-theme_override_colors/icon_focus_color = Color(0, 0, 0, 0)
-theme_override_colors/icon_normal_color = Color(0, 0, 0, 0)
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("1_yqorp")
-theme_override_font_sizes/font_size = 50
-text = "Play"
-flat = true
-
-[node name="AchievementsButton" type="Button" parent="."]
-z_index = 8
-layout_mode = 0
-offset_left = 473.0
-offset_top = 453.0
-offset_right = 806.0
-offset_bottom = 532.0
-focus_mode = 0
-theme_override_colors/font_hover_color = Color(0.462291, 0.462291, 0.462291, 1)
-theme_override_colors/icon_disabled_color = Color(0, 0, 0, 0)
-theme_override_colors/icon_hover_pressed_color = Color(0, 0, 0, 0)
-theme_override_colors/icon_hover_color = Color(0, 0, 0, 0)
-theme_override_colors/icon_pressed_color = Color(0, 0, 0, 0)
-theme_override_colors/icon_focus_color = Color(0, 0, 0, 0)
-theme_override_colors/icon_normal_color = Color(0, 0, 0, 0)
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("1_yqorp")
-theme_override_font_sizes/font_size = 50
-disabled = true
-text = "Achievements"
-flat = true
-
-[node name="SettingsButton" type="Button" parent="."]
-z_index = 8
-layout_mode = 0
-offset_left = 531.0
-offset_top = 517.0
-offset_right = 739.0
-offset_bottom = 596.0
-focus_mode = 0
-theme_override_colors/font_hover_color = Color(0.462291, 0.462291, 0.462291, 1)
-theme_override_colors/icon_disabled_color = Color(0, 0, 0, 0)
-theme_override_colors/icon_hover_pressed_color = Color(0, 0, 0, 0)
-theme_override_colors/icon_hover_color = Color(0, 0, 0, 0)
-theme_override_colors/icon_pressed_color = Color(0, 0, 0, 0)
-theme_override_colors/icon_focus_color = Color(0, 0, 0, 0)
-theme_override_colors/icon_normal_color = Color(0, 0, 0, 0)
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("1_yqorp")
-theme_override_font_sizes/font_size = 50
-disabled = true
-text = "Settings"
-flat = true
-
-[node name="QuitButton" type="Button" parent="."]
-z_index = 8
-offset_left = 502.0
-offset_top = 581.0
-offset_right = 759.0
-offset_bottom = 660.0
-focus_mode = 0
-theme_override_colors/font_hover_color = Color(0.462291, 0.462291, 0.462291, 1)
-theme_override_colors/icon_disabled_color = Color(0, 0, 0, 0)
-theme_override_colors/icon_hover_pressed_color = Color(0, 0, 0, 0)
-theme_override_colors/icon_hover_color = Color(0, 0, 0, 0)
-theme_override_colors/icon_pressed_color = Color(0, 0, 0, 0)
-theme_override_colors/icon_focus_color = Color(0, 0, 0, 0)
-theme_override_colors/icon_normal_color = Color(0, 0, 0, 0)
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("1_yqorp")
-theme_override_font_sizes/font_size = 50
-text = "Quit"
-flat = true
 
 [node name="CobsonHead" type="TextureRect" parent="."]
 layout_mode = 0
@@ -186,6 +119,255 @@ offset_right = 1280.0
 offset_bottom = 720.0
 color = Color(0, 0, 0, 1)
 
+[node name="MenuButtons" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PlayButton" type="Button" parent="MenuButtons"]
+z_index = 8
+layout_mode = 0
+offset_left = 600.0
+offset_top = 389.0
+offset_right = 699.0
+offset_bottom = 468.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_hover_color = Color(0.462291, 0.462291, 0.462291, 1)
+theme_override_colors/icon_disabled_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_hover_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_hover_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_focus_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 0)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_yqorp")
+theme_override_font_sizes/font_size = 50
+text = "Play"
+flat = true
+
+[node name="AchievementsButton" type="Button" parent="MenuButtons"]
+z_index = 8
+layout_mode = 0
+offset_left = 489.0
+offset_top = 453.0
+offset_right = 822.0
+offset_bottom = 532.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_hover_color = Color(0.462291, 0.462291, 0.462291, 1)
+theme_override_colors/icon_disabled_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_hover_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_hover_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_focus_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 0)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_yqorp")
+theme_override_font_sizes/font_size = 50
+disabled = true
+text = "Achievements"
+flat = true
+
+[node name="SettingsButton" type="Button" parent="MenuButtons"]
+z_index = 8
+layout_mode = 0
+offset_left = 547.0
+offset_top = 517.0
+offset_right = 755.0
+offset_bottom = 596.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_hover_color = Color(0.462291, 0.462291, 0.462291, 1)
+theme_override_colors/icon_disabled_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_hover_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_hover_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_focus_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 0)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_yqorp")
+theme_override_font_sizes/font_size = 50
+text = "Settings"
+flat = true
+
+[node name="QuitButton" type="Button" parent="MenuButtons"]
+z_index = 8
+layout_mode = 0
+offset_left = 588.0
+offset_top = 581.0
+offset_right = 703.0
+offset_bottom = 660.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_hover_color = Color(0.462291, 0.462291, 0.462291, 1)
+theme_override_colors/icon_disabled_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_hover_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_hover_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_focus_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 0)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_yqorp")
+theme_override_font_sizes/font_size = 50
+text = "Quit"
+flat = true
+
+[node name="SettingsButtons" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VideoButton" type="Button" parent="SettingsButtons"]
+z_index = 8
+layout_mode = 0
+offset_left = 583.0
+offset_top = 453.0
+offset_right = 721.0
+offset_bottom = 532.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_hover_color = Color(0.462291, 0.462291, 0.462291, 1)
+theme_override_colors/icon_disabled_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_hover_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_hover_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_focus_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 0)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_yqorp")
+theme_override_font_sizes/font_size = 50
+text = "Video"
+flat = true
+
+[node name="AudioButton" type="Button" parent="SettingsButtons"]
+z_index = 8
+layout_mode = 0
+offset_left = 581.0
+offset_top = 517.0
+offset_right = 721.0
+offset_bottom = 596.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_hover_color = Color(0.462291, 0.462291, 0.462291, 1)
+theme_override_colors/icon_disabled_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_hover_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_hover_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_focus_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 0)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_yqorp")
+theme_override_font_sizes/font_size = 50
+disabled = true
+text = "Audio"
+flat = true
+
+[node name="BackButton" type="Button" parent="SettingsButtons"]
+z_index = 8
+layout_mode = 0
+offset_left = 593.0
+offset_top = 581.0
+offset_right = 711.0
+offset_bottom = 660.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_hover_color = Color(0.462291, 0.462291, 0.462291, 1)
+theme_override_colors/icon_disabled_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_hover_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_hover_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_focus_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 0)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_yqorp")
+theme_override_font_sizes/font_size = 50
+text = "Back"
+flat = true
+
+[node name="VideoSettingsButton" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="FullscreenButton" type="Button" parent="VideoSettingsButton"]
+z_index = 8
+layout_mode = 0
+offset_left = 527.0
+offset_top = 453.0
+offset_right = 774.0
+offset_bottom = 532.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_hover_color = Color(0.462291, 0.462291, 0.462291, 1)
+theme_override_colors/icon_disabled_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_hover_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_hover_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_focus_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 0)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_yqorp")
+theme_override_font_sizes/font_size = 50
+text = "Fullscreen"
+flat = true
+
+[node name="VsyncButton" type="Button" parent="VideoSettingsButton"]
+z_index = 8
+layout_mode = 0
+offset_left = 580.0
+offset_top = 517.0
+offset_right = 723.0
+offset_bottom = 596.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_hover_color = Color(0.462291, 0.462291, 0.462291, 1)
+theme_override_colors/icon_disabled_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_hover_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_hover_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_focus_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 0)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_yqorp")
+theme_override_font_sizes/font_size = 50
+text = "Vsync"
+flat = true
+
+[node name="VideoBackButton" type="Button" parent="VideoSettingsButton"]
+z_index = 8
+layout_mode = 0
+offset_left = 593.0
+offset_top = 581.0
+offset_right = 711.0
+offset_bottom = 660.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_hover_color = Color(0.462291, 0.462291, 0.462291, 1)
+theme_override_colors/icon_disabled_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_hover_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_hover_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_focus_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 0)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_yqorp")
+theme_override_font_sizes/font_size = 50
+text = "Back"
+flat = true
+
 [node name="Intro" type="Control" parent="."]
 visible = false
 anchors_preset = 0
@@ -208,6 +390,7 @@ offset_top = 614.0
 offset_right = 1233.0
 offset_bottom = 693.0
 focus_mode = 0
+mouse_default_cursor_shape = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 10
@@ -219,7 +402,13 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_mipys")
 theme_override_styles/normal = SubResource("StyleBoxFlat_l72w3")
 text = "Skip"
 
-[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
-[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="MenuButtons/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="MenuButtons/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="MenuButtons/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="SettingsButtons/VideoButton" to="." method="_on_video_button_pressed"]
+[connection signal="pressed" from="SettingsButtons/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="VideoSettingsButton/FullscreenButton" to="." method="_on_fullscreen_button_pressed"]
+[connection signal="pressed" from="VideoSettingsButton/VsyncButton" to="." method="_on_vsync_button_pressed"]
+[connection signal="pressed" from="VideoSettingsButton/VideoBackButton" to="." method="_on_video_back_button_pressed"]
 [connection signal="finished" from="Intro/IntroVideo" to="." method="_on_intro_video_finished"]
 [connection signal="pressed" from="Intro/SkipButton" to="." method="_on_skip_button_pressed"]

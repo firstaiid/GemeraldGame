@@ -2,7 +2,6 @@ class_name UI
 extends Control
 
 @export_subgroup("Nodes")
-@export var y_coord: Label
 @export var vril_coins: Label
 @export var fps_label: Label
 @export var health_bar: ProgressBar
@@ -11,9 +10,9 @@ extends Control
 @export var pause_menu: Control
 @export var reset_button: Button
 @export var quit_button: Button
-@export var settings_button: Button
 @export var console: Control
 @export var console_text: RichTextLabel
+@export var hud: Control
 
 var coins: int = 0
 
@@ -24,20 +23,21 @@ func _unhandled_key_input(event: InputEvent) -> void:
 		GameController.developer_console()
 
 func _ready() -> void:
-	EventHandler.connect("player_pos",player_pos)
-	EventHandler.connect("vril_coin_collected",vril_coin_collected)
-	EventHandler.connect("player_health",player_health)
-	EventHandler.connect("pause",pause)
-	EventHandler.connect("developer_console",developer_console)
-	EventHandler.connect("print_to_console",print_to_console)
+	EventHandler.connect("vril_coin_collected", vril_coin_collected)
+	EventHandler.connect("player_health", player_health)
+	EventHandler.connect("pause", pause)
+	EventHandler.connect("developer_console", developer_console)
+	EventHandler.connect("print_to_console", print_to_console)
 	pause_menu.visible = false
 	console.visible = false
+	hud.visible = false
 
 func _process(_delta: float) -> void:
 	fps_label.text = "FPS: " + str(Engine.get_frames_per_second())
-
-func player_pos(value: Vector2) -> void:
-	y_coord.text = str(value)
+	
+func _physics_process(_delta: float) -> void:
+	if Global.ingame:
+		hud.visible = true
 	
 func vril_coin_collected():
 	coins += 1
@@ -48,12 +48,13 @@ func player_health(value: float):
 	health_value.text = str(int(value))
 
 func pause():
-	if !pause_menu.visible:
-		pause_menu.visible = true
-		get_tree().paused = true
-	else:
-		pause_menu.visible = false
-		get_tree().paused = false
+	if Global.ingame:
+		if !pause_menu.visible:
+			pause_menu.visible = true
+			get_tree().paused = true
+		else:
+			pause_menu.visible = false
+			get_tree().paused = false
 		
 func developer_console():
 	if !console.visible:
@@ -73,4 +74,5 @@ func _on_reset_button_pressed() -> void:
 
 func _on_quit_button_pressed() -> void:
 	get_tree().paused = false
+	Global.ingame = false
 	get_tree().change_scene_to_file("res://scenes/MainMenu.tscn")
