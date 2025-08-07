@@ -59,7 +59,7 @@ radius = 6.66667
 height = 273.333
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ioluw"]
-size = Vector2(306.667, 606.667)
+size = Vector2(306.667, 563.333)
 
 [node name="MatthewEnemy" type="CharacterBody2D" node_paths=PackedStringArray("gravity_component", "movement_component", "right_detector", "left_detector", "hurt_box", "animated_sprite")]
 scale = Vector2(0.3, 0.3)
@@ -110,7 +110,7 @@ debug_color = Color(0.900339, 0, 0.173486, 0.42)
 [node name="DamageBox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageBox"]
-position = Vector2(-26.6667, -26.6667)
+position = Vector2(-26.6667, -4.99994)
 shape = SubResource("RectangleShape2D_ioluw")
 debug_color = Color(0.824966, 0.398341, 1.92523e-07, 0.42)
 

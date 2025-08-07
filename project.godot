@@ -23,6 +23,7 @@ CameraControl="*res://addons/smartcamera2D/CameraControl.gd"
 EventHandler="*res://scripts/event_handler.gd"
 GameController="*res://scripts/game_controller.gd"
 Global="*res://scripts/global.gd"
+ProjectileEngine="*res://addons/godot_projectile_engine/GodotProjectileEngine.gd"
 
 [display]
 
@@ -34,7 +35,7 @@ window/stretch/mode="canvas_items"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/smartcamera2D/plugin.cfg")
+enabled=PackedStringArray("res://addons/godot_projectile_engine/plugin.cfg", "res://addons/smartcamera2D/plugin.cfg")
 
 [input]
 

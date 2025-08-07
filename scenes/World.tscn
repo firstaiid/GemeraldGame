@@ -3,22 +3,22 @@
 [ext_resource type="Script" uid="uid://cj4lqs27ud35v" path="res://scripts/world.gd" id="1_kqs1s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_io8um"]
-size = Vector2(807, 534)
+size = Vector2(807, 51)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kqs1s"]
 size = Vector2(377.5, 9384)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_32lhk"]
-size = Vector2(550.5, 11949)
+size = Vector2(550.5, 11954)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1lgw5"]
-size = Vector2(2281.25, 982)
+size = Vector2(2281.25, 124)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7g83o"]
-size = Vector2(340, 3226)
+size = Vector2(47, 2335)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d1c63"]
-size = Vector2(1734.4, 173.806)
+size = Vector2(1734.4, 149.23)
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_kqs1s")
@@ -29,7 +29,7 @@ script = ExtResource("1_kqs1s")
 collision_layer = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level1/Collision"]
-position = Vector2(393.5, 257)
+position = Vector2(393.5, 15.5)
 shape = SubResource("RectangleShape2D_io8um")
 debug_color = Color(0, 0, 0, 0.278431)
 
@@ -39,23 +39,24 @@ shape = SubResource("RectangleShape2D_kqs1s")
 debug_color = Color(0, 0, 0, 0.278431)
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Level1/Collision"]
-position = Vector2(1648.75, 5756.5)
+position = Vector2(1648.75, 5754)
 shape = SubResource("RectangleShape2D_32lhk")
 debug_color = Color(0, 0, 0, 0.278431)
 
 [node name="CollisionShape2D6" type="CollisionShape2D" parent="Level1/Collision"]
-position = Vector2(4282.38, -9)
+position = Vector2(4282.38, -442)
 shape = SubResource("RectangleShape2D_1lgw5")
 debug_color = Color(0, 0, 0, 0.278431)
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="Level1/Collision"]
-position = Vector2(-173, -1111)
+position = Vector2(-26.5, -1115.5)
 shape = SubResource("RectangleShape2D_7g83o")
 debug_color = Color(0, 0, 0, 0.278431)
 
 [node name="CollisionShape2D5" type="CollisionShape2D" parent="Level1/Collision"]
-position = Vector2(2316.44, -220.299)
+position = Vector2(2313.68, -236.272)
 rotation = -0.226893
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_d1c63")
 debug_color = Color(0, 0, 0, 0.278431)
 
@@ -65,42 +66,78 @@ z_index = 1
 [node name="ColorRect" type="ColorRect" parent="Level1/Visuals"]
 offset_left = -11.0
 offset_top = -10.0
-offset_right = 1129.0
-offset_bottom = 12047.0
-color = Color(0.708144, 0.672122, 0.688842, 1)
+offset_right = 751.0
+offset_bottom = 61.0
+color = Color(0.166896, 0.30741, 0, 1)
 
 [node name="ColorRect2" type="ColorRect" parent="Level1/Visuals"]
 offset_left = 751.0
 offset_top = -223.0
 offset_right = 1129.0
-offset_bottom = -10.0
-color = Color(0.708144, 0.672122, 0.688842, 1)
+offset_bottom = -170.0
+color = Color(0.166896, 0.30741, 0, 1)
+
+[node name="ColorRect8" type="ColorRect" parent="Level1/Visuals"]
+offset_left = 751.0
+offset_top = -176.0
+offset_right = 1129.0
+offset_bottom = 87.0
+color = Color(0.709804, 0.643137, 0.54902, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="Level1/Visuals"]
+offset_left = 1373.0
+offset_top = -223.0
+offset_right = 1924.0
+offset_bottom = -170.0
+color = Color(0.166896, 0.30741, 0, 1)
+
+[node name="ColorRect9" type="ColorRect" parent="Level1/Visuals"]
+offset_left = 1373.0
+offset_top = -176.0
+offset_right = 1924.0
+offset_bottom = 12081.0
+color = Color(0.709804, 0.643137, 0.54902, 1)
 
 [node name="ColorRect3" type="ColorRect" parent="Level1/Visuals"]
 offset_left = -1528.0
 offset_top = -2189.0
 offset_right = -3.0
 offset_bottom = 11645.0
-color = Color(0.708144, 0.672122, 0.688842, 1)
+color = Color(0.709804, 0.643137, 0.54902, 1)
 
-[node name="ColorRect4" type="ColorRect" parent="Level1/Visuals"]
-offset_left = 1373.0
-offset_top = -218.0
-offset_right = 3202.0
-offset_bottom = 11770.0
-color = Color(0.708144, 0.672122, 0.688842, 1)
+[node name="ColorRect7" type="ColorRect" parent="Level1/Visuals"]
+offset_left = -11.0
+offset_top = 41.0
+offset_right = 1129.0
+offset_bottom = 12167.0
+color = Color(0.709804, 0.643137, 0.54902, 1)
 
 [node name="ColorRect5" type="ColorRect" parent="Level1/Visuals"]
-offset_left = 1810.0
-offset_top = -193.0
-offset_right = 3177.0
-offset_bottom = 119.0
+offset_left = 1912.0
+offset_top = -220.0
+offset_right = 3175.0
+offset_bottom = -175.0
 rotation = -0.226893
-color = Color(0.708144, 0.672122, 0.688842, 1)
+color = Color(0.166896, 0.30741, 0, 1)
+
+[node name="ColorRect10" type="ColorRect" parent="Level1/Visuals"]
+offset_left = 1461.0
+offset_top = -72.0
+offset_right = 3207.0
+offset_bottom = 2180.0
+rotation = -0.226893
+color = Color(0.709804, 0.643137, 0.54902, 1)
 
 [node name="ColorRect6" type="ColorRect" parent="Level1/Visuals"]
 offset_left = 3142.0
-offset_top = -500.0
-offset_right = 5429.0
-offset_bottom = 3124.0
-color = Color(0.708144, 0.672122, 0.688842, 1)
+offset_top = -504.0
+offset_right = 5423.0
+offset_bottom = -460.0
+color = Color(0.166896, 0.30741, 0, 1)
+
+[node name="ColorRect11" type="ColorRect" parent="Level1/Visuals"]
+offset_left = 3161.0
+offset_top = -460.0
+offset_right = 5423.0
+offset_bottom = 1814.0
+color = Color(0.709804, 0.643137, 0.54902, 1)

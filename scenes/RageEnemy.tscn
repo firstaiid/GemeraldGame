@@ -19,7 +19,7 @@ radius = 6.66667
 height = 266.667
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_exrfu"]
-size = Vector2(306.667, 540)
+size = Vector2(306.667, 513.333)
 
 [node name="RageEnemy" type="CharacterBody2D" node_paths=PackedStringArray("gravity_component", "movement_component", "right_detector", "left_detector", "hurt_box", "damage_box", "sprite")]
 scale = Vector2(0.15, 0.15)
@@ -63,13 +63,12 @@ shape = SubResource("RectangleShape2D_8e8gc")
 position = Vector2(-26.6667, -253.333)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_g2eoe")
-one_way_collision = true
 debug_color = Color(0.900339, 0, 0.173486, 0.42)
 
 [node name="DamageBox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageBox"]
-position = Vector2(-26.6667, 30)
+position = Vector2(-26.6667, 43.3333)
 shape = SubResource("RectangleShape2D_exrfu")
 debug_color = Color(0.824966, 0.398341, 1.92523e-07, 0.42)
 

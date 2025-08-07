@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://b3uuy0pnaksws" path="res://scenes/Player.tscn" id="1_elqb8"]
 [ext_resource type="Script" uid="uid://dul4rskm3k7in" path="res://scripts/main.gd" id="1_rvslj"]
-[ext_resource type="Texture2D" uid="uid://dktf1nlpj26mj" path="res://assets/images/agartha.jpg" id="2_c01mt"]
+[ext_resource type="Texture2D" uid="uid://jdii70q12alg" path="res://assets/images/agartha-2.png" id="2_lhr70"]
 [ext_resource type="PackedScene" uid="uid://cgu2vnc1phhsa" path="res://scenes/World.tscn" id="3_0bbpv"]
 [ext_resource type="Script" uid="uid://ba26vudymgtll" path="res://addons/smartcamera2D/SmartCamera2D.gd" id="4_rarhs"]
 [ext_resource type="PackedScene" uid="uid://ik1ensevhigy" path="res://scenes/UI.tscn" id="5_vcsgt"]
@@ -17,18 +17,17 @@ script = ExtResource("1_rvslj")
 [node name="Parallax2D" type="Parallax2D" parent="."]
 z_index = -10
 texture_repeat = 2
-scale = Vector2(0.3, 0.3)
+scale = Vector2(2, 2)
 scroll_scale = Vector2(1.1, 1.2)
-scroll_offset = Vector2(0, -10585)
-repeat_size = Vector2(5000, 5000)
+scroll_offset = Vector2(-1464, -351)
+repeat_size = Vector2(1920, 1080)
 repeat_times = 20
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
 z_index = -10
 texture_repeat = 2
-position = Vector2(2500, 495)
-scale = Vector2(4.16667, 6.25)
-texture = ExtResource("2_c01mt")
+position = Vector2(-686.667, -770)
+texture = ExtResource("2_lhr70")
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -36,7 +35,7 @@ texture = ExtResource("2_c01mt")
 
 [node name="Player" parent="." instance=ExtResource("1_elqb8")]
 z_index = 5
-position = Vector2(445, 529)
+position = Vector2(3325, 529)
 
 [node name="SmartCamera2D" type="Camera2D" parent="Player"]
 position = Vector2(1, -1)
@@ -49,49 +48,49 @@ target = NodePath("..")
 metadata/_custom_type_script = "uid://ba26vudymgtll"
 
 [node name="World" parent="." instance=ExtResource("3_0bbpv")]
-position = Vector2(97, 648)
+position = Vector2(2977, 648)
 
 [node name="VrilCoin" parent="." instance=ExtResource("7_nxtc6")]
-position = Vector2(1042, 368)
+position = Vector2(3922, 368)
 
 [node name="VrilCoin3" parent="." instance=ExtResource("7_nxtc6")]
-position = Vector2(719, 579)
+position = Vector2(3599, 579)
 
 [node name="VrilCoin7" parent="." instance=ExtResource("7_nxtc6")]
-position = Vector2(2615, 227)
+position = Vector2(5495, 227)
 
 [node name="VrilCoin9" parent="." instance=ExtResource("7_nxtc6")]
-position = Vector2(2013, 363)
+position = Vector2(4893, 363)
 
 [node name="VrilCoin10" parent="." instance=ExtResource("7_nxtc6")]
-position = Vector2(3226, 90)
+position = Vector2(6106, 90)
 
 [node name="GassyPowerup" parent="." instance=ExtResource("10_lhr70")]
-position = Vector2(168, 577)
+position = Vector2(3048, 577)
 
 [node name="RageEnemy" parent="." instance=ExtResource("8_jlsqs")]
-position = Vector2(944, 388)
+position = Vector2(3824, 388)
 
 [node name="RageEnemy2" parent="." instance=ExtResource("8_jlsqs")]
-position = Vector2(1764, 386)
+position = Vector2(4644, 386)
 
 [node name="RageEnemy3" parent="." instance=ExtResource("8_jlsqs")]
-position = Vector2(2916, 177)
+position = Vector2(5796, 177)
 
 [node name="RageEnemy4" parent="." instance=ExtResource("8_jlsqs")]
-position = Vector2(2279, 319)
+position = Vector2(5159, 319)
 
 [node name="MatthewEnemy" parent="." instance=ExtResource("9_q8u5g")]
-position = Vector2(5397, 64)
+position = Vector2(8277, 64)
 
 [node name="MatthewEnemy2" parent="." instance=ExtResource("9_q8u5g")]
-position = Vector2(4485, 50)
+position = Vector2(7365, 50)
 
 [node name="MatthewEnemy3" parent="." instance=ExtResource("9_q8u5g")]
-position = Vector2(3590, 47)
+position = Vector2(6470, 47)
 
 [node name="VrilCoin2" parent="." instance=ExtResource("7_nxtc6")]
-position = Vector2(4031, 90)
+position = Vector2(6911, 90)
 
 [node name="VrilCoin4" parent="." instance=ExtResource("7_nxtc6")]
-position = Vector2(5011, 97)
+position = Vector2(7891, 97)
