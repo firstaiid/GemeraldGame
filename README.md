@@ -4,4 +4,4 @@ silly little stupid cobson gets sucked into his laptop into the world of the int
 
 alpha not finished
 
-also kinda new to godot sorry if my code is dogshit sometimes
+the game will probably never be finished i made it as a joke
