@@ -1,6 +1,6 @@
 Gemerald Game:
 
-silly little stupid cobson gets sucked into his laptop into the world of the internet
+silly little stupid cobson gets sucked into his laptop into the world of the internet (intro video coming)
 
 alpha not finished
 
